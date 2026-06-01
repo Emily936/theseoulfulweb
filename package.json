@@ -1,0 +1,23 @@
+{
+  "name": "theseoulful-bakery",
+  "version": "1.0.0",
+  "description": "The Seoulful - A warm, Seoul-inspired Korean bakery website showcasing artisanal salted butter bread, bunsik, and farm lattes.",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "bakery",
+    "seoulful",
+    "korean",
+    "salted-butter-bread",
+    "kimbap",
+    "richmond-bc"
+  ],
+  "author": "Antigravity Pair Programmer",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
