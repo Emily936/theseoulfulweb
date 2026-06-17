@@ -1,0 +1,4 @@
+/index.html    /home    301!
+/menu.html     /menu    301!
+/home          /index.html    200
+/menu          /menu.html     200

@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Optimization -->
-  <title>Menu | The Seoulful | Cozy Korean Bakery & Cafe</title>
+  <title>Menu | The Seoulful | Korean Bakery & Cafe</title>
   <meta name="description" content="Explore our menu at The Seoulful. Try our warm Salted Butter Breads, fresh handmade Kimbap rolls, authentic Tteokbokki, and signature farm lattes in Richmond, BC.">
   <meta name="keywords" content="Korean bakery menu, Salted Butter Bread, Kimbap, Tteokbokki, Richmond BC cafes, Seoulful menu">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Menu | The Seoulful | Cozy Korean Bakery & Cafe">
+  <meta property="og:title" content="Menu | The Seoulful | Korean Bakery & Cafe">
   <meta property="og:description" content="Explore our artisanal menu featuring Salted Butter Breads, Kimbap, and craft specialty lattes. Warmly baked daily in Richmond, BC.">
   <meta property="og:image" content="images/logos/breadlogo.PNG">
   <meta property="og:type" content="website">
@@ -51,8 +51,7 @@
       background: var(--cream);
     }
     
-    .hero-carousel-title,
-    .category-group-title {
+    .hero-carousel-title {
       font-family: var(--ff-display) !important;
       color: var(--brown-dark) !important;
       font-weight: 400 !important;
@@ -93,15 +92,49 @@
       margin-left: 2px !important;
     }
     .category-logo-inline {
-      height: 38px;
+      height: 60px;
       width: auto;
       vertical-align: middle;
-      margin-right: 12px;
+      margin-right: 16px;
       border-radius: 8px;
       border: none;
       padding: 0;
       background: transparent;
       object-fit: contain;
+      flex-shrink: 0;
+    }
+    .category-group-title {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0 !important;
+      font-size: 22px !important;
+      font-family: var(--ff-body) !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      color: var(--brown-dark) !important;
+    }
+    .category-title-text-group {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .category-title-main {
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+      line-height: 1.2;
+    }
+    .category-title-sub {
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--ff-body);
+      color: var(--brown-light);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
 
     /* Card Typography Overrides to match index.html fonts */
@@ -213,8 +246,8 @@
       color: var(--brown-dark);
     }
   </style>
-  <script type="module" crossorigin src="/assets/app-DrDsFBO2.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/app-DznUrYCr.css">
+  <script type="module" crossorigin src="/assets/app-DjpaaEnk.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/app-CEa3eCLS.css">
 </head>
 <body>
 
@@ -223,15 +256,15 @@
        ========================================================================== -->
   <header class="header scrolled" id="header">
     <div class="nav-container">
-      <a href="index.html" class="logo-group" id="logo">
+      <a href="/home" class="logo-group" id="logo">
         <img src="/assets/breadlogo-Cbqi6DVA.PNG" alt="The Seoulful Logo" class="logo-img">
       </a>
       
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="index.html" class="nav-link" id="nav-home">Home</a></li>
-        <li><a href="menu.html" class="nav-link active" id="nav-lineup">Menu</a></li>
-        <li><a href="index.html#gallery" class="nav-link" id="nav-gallery">Gallery</a></li>
-        <li><a href="index.html#footer" class="nav-link" id="nav-contact">Visit Us</a></li>
+        <li><a href="/home" class="nav-link" id="nav-home">Home</a></li>
+        <li><a href="/menu" class="nav-link active" id="nav-lineup">Menu</a></li>
+        <li><a href="/home#gallery" class="nav-link" id="nav-gallery">Gallery</a></li>
+        <li><a href="/home#footer" class="nav-link" id="nav-contact">Visit Us</a></li>
         <li>
           <button class="nav-cta open-order-btn" id="header-order-btn">Order Online</button>
         </li>
@@ -245,27 +278,32 @@
     </div>
   </header>
 
-  
-
   <!-- ==========================================================================
        4. Filterable Lineup (Product Showcase)
        ========================================================================== -->
   <section class="lineup" id="lineup" style="padding-top: 110px; padding-bottom: 60px;">
     <div class="container">
       
+      <!-- Category Logo Banner -->
+      <div class="menu-logo-banner">
+        <img src="/assets/bunsiklogo-D7QJ0Ra4.png" alt="The Seoulful" class="menu-banner-logo">
+      </div>
+
       <!-- Filter Controls -->
       <div class="lineup-filter">
         <button class="filter-btn active" data-filter="all" id="btn-filter-all">All Items</button>
-        <button class="filter-btn" data-filter="bakery" id="btn-filter-bakery">Bakery & Salt Bread</button>
-        <button class="filter-btn" data-filter="bunsik" id="btn-filter-bunsik">Seoulful Bunsik</button>
-        <button class="filter-btn" data-filter="drinks" id="btn-filter-drinks">Lattes & Ades</button>
+        <button class="filter-btn" data-filter="bakery" id="btn-filter-bakery">Breads </button>
+        <button class="filter-btn" data-filter="bunsik" id="btn-filter-bunsik">Bunsik</button>
+        <button class="filter-btn" data-filter="drinks" id="btn-filter-drinks">Drinks</button>
       </div>
       
       <div class="category-container">
         <!-- 4a. BAKERY & SALT BREAD SECTION -->
         <div class="category-section" data-category="bakery" id="category-bakery">
           <div class="category-group-header">
-            <h3 class="category-group-title"><img src="/assets/breadlogo-Cbqi6DVA.PNG" alt="Bakery Logo" class="category-logo-inline">Salted Butter Bread & Buns <span>Signature Lineup</span></h3>
+            <h3 class="category-group-title">
+              <span class="category-title-main">Salted Butter Bread</span>
+            </h3>
           </div>
           
           <div class="products-grid">
@@ -563,7 +601,9 @@
         <!-- 4b. SEOUL-FULL BUNSIK SECTION -->
         <div class="category-section" data-category="bunsik" id="category-bunsik">
           <div class="category-group-header">
-            <h3 class="category-group-title"><img src="/assets/bunsiklogo-CR7hevUP.JPEG" alt="Bunsik Logo" class="category-logo-inline">Seoul-Full Bunsik <span>Kimbap, Sandwiches & Tteokbokki</span></h3>
+            <h3 class="category-group-title">
+              <span class="category-title-main">Seoul-Full Bunsik</span>
+            </h3>
           </div>
           
           <div class="products-grid">
@@ -742,7 +782,9 @@
         <!-- 4c. FARM LATTES & ADES SECTION -->
         <div class="category-section" data-category="drinks" id="category-drinks">
           <div class="category-group-header">
-            <h3 class="category-group-title"><img src="/assets/drinklogo-C84YZ4rH.jpeg" alt="Drinks Logo" class="category-logo-inline">Specialty Drinks <span>Farm Lattes & Sparkling Ades</span></h3>
+            <h3 class="category-group-title">
+              <span class="category-title-main">Specialty Drinks</span>
+            </h3>
           </div>
           
           <div class="products-grid">
@@ -1006,42 +1048,6 @@
     </div>
   </section>
 
-
-
-  <!-- ==========================================================================
-       5. "Seoulful Mood" Social Connect
-       ========================================================================== -->
-  <section class="social-connect reveal" id="gallery">
-    <div class="container">
-      <div class="social-connect-header">
-        <h2 class="section-title">Seoulful Mood</h2>
-        <p class="social-connect-handle">@the.seoulful — Richmond, BC</p>
-      </div>
-      <div class="instagram-bento-grid">
-        <a href="https://www.instagram.com/reel/DY5jx1TK2Iv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
-          <img src="/assets/ins0-DUeQDmjp.png" >
-        </a>
-        <a href="https://www.instagram.com/p/DZD-qO1E15i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
-          <img src="/assets/ins1-EsuvWZC6.png" >
-        </a>
-        <a href="https://www.instagram.com/p/DYqa2JuEyMq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
-          <img src="/assets/ins2-C4qbM43v.png" >
-        </a>
-        <a href="https://www.instagram.com/p/DX0GwWvD7VT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
-          <img src="/assets/ins3-BK3kciBo.png" >
-        </a>
-      </div>
-      <div class="instagram-cta">
-        <a class="ig-link" href="https://www.instagram.com/the.seoulful/" target="_blank">
-          Follow for daily drops
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- ==========================================================================
        6. Side Detail Drawer (Slide-over Product Details)
        ========================================================================== -->
@@ -1055,19 +1061,10 @@
       <div class="drawer-img">
         <img src="" alt="" id="drawer-product-img">
       </div>
-      <div class="drawer-meta" id="drawer-product-tags">
-        <!-- Dynamic Tags -->
-      </div>
       <h2 class="drawer-title" id="drawer-product-title">Product Title</h2>
       <p class="drawer-desc" id="drawer-product-desc">Detailed product description parsed from screenshots.</p>
       
-      <h4 class="drawer-section-title">Highlighted Ingredients</h4>
-      <ul class="drawer-list" id="drawer-product-ingredients">
-        <!-- Dynamic Ingredients -->
-      </ul>
-      
       <div class="drawer-order-shortcut">
-        <p class="drawer-order-text">Craving this Seoulful bite? Order it hot and fresh directly to your door.</p>
         <button class="btn-primary open-order-btn" style="width: 100%; justify-content: center;" id="drawer-order-btn">Order Now</button>
       </div>
     </div>
@@ -1098,14 +1095,23 @@
             Be Yourself. That is most universal. Bringing you cozy artisanal baking, warm comfort food, and Seoul-inspired pastel moods.
           </p>
           <div class="footer-socials">
-            <a href="https://www.instagram.com/the.seoulful/" target="_blank" class="footer-social-icon" aria-label="Follow us on Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <a href="https://www.instagram.com/the.seoulful/" target="_blank" class="footer-social-icon" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
             </a>
-            <a href="#" class="footer-social-icon" aria-label="Find us on Google Maps">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <a href="https://www.tiktok.com/@theseoulful" target="_blank" class="footer-social-icon" aria-label="TikTok">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+              </svg>
             </a>
-            <a href="#" class="footer-social-icon" aria-label="Send us an Email">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <a href="https://maps.app.goo.gl/tn3f263MJAHqiQ3c8?g_st=ii" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Google Maps">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
             </a>
           </div>
         </div>
@@ -1113,9 +1119,9 @@
         <div class="footer-col">
           <h3 class="footer-title">Quick Links</h3>
           <ul class="footer-links">
-            <li><a href="index.html" class="footer-link">Home</a></li>
-            <li><a href="menu.html" class="footer-link">Daily Lineup</a></li>
-            <li><a href="index.html#gallery" class="footer-link">Seoulful Gallery</a></li>
+            <li><a href="/home" class="footer-link">Home</a></li>
+            <li><a href="/menu" class="footer-link">Daily Lineup</a></li>
+            <li><a href="/home#gallery" class="footer-link">Seoulful Gallery</a></li>
           </ul>
         </div>
         

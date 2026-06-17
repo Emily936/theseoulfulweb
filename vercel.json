@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/home", "destination": "/index.html" },
+    { "source": "/menu", "destination": "/menu.html" }
+  ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/home", "permanent": true },
+    { "source": "/menu.html", "destination": "/menu", "permanent": true }
+  ]
+}

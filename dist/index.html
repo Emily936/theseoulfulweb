@@ -180,22 +180,24 @@
             z-index: 6;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(61, 31, 13, 0.45);
-            border: 1px solid rgba(245, 235, 217, 0.3);
-            color: var(--cream);
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            background: transparent;
+            border: none;
+            color: rgba(245, 235, 217, 0.7);
+            width: auto;
+            height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: color 0.2s, transform 0.2s;
         }
 
-        .carousel-arrow:hover { background: rgba(61, 31, 13, 0.75); }
-        .carousel-arrow.prev { left: 24px; }
-        .carousel-arrow.next { right: 24px; }
+        .carousel-arrow:hover {
+            color: var(--cream);
+            transform: translateY(-50%) scale(1.15);
+        }
+        .carousel-arrow.prev { left: 20px; }
+        .carousel-arrow.next { right: 20px; }
 
         .carousel-dots {
             position: absolute;
@@ -406,6 +408,7 @@
         }
 
         @media (max-width: 860px) {
+            .carousel-arrow { display: none !important; }
             .bts-inner { grid-template-columns: 1fr; height: auto; }
             .bts-left { padding: 32px 24px; }
             .bts-right { height: 360px; }
@@ -675,8 +678,8 @@
 
         .reveal.active, .reveal.visible { opacity: 1; transform: none; }
     </style>
-  <script type="module" crossorigin src="/assets/app-DrDsFBO2.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/app-DznUrYCr.css">
+  <script type="module" crossorigin src="/assets/app-DjpaaEnk.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/app-CEa3eCLS.css">
 </head>
 
 <body>
@@ -686,14 +689,14 @@
        ==================================================================== -->
     <header class="header" id="header">
         <div class="nav-container">
-            <a href="index.html" class="logo-group" id="logo">
+            <a href="/home" class="logo-group" id="logo">
                 <img src="/assets/breadlogo-Cbqi6DVA.PNG" alt="The Seoulful Logo" class="logo-img">
             </a>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html" class="nav-link active" id="nav-home">Home</a></li>
-                <li><a href="menu.html" class="nav-link" id="nav-lineup"> Menu</a></li>
-                <li><a href="index.html#gallery" class="nav-link" id="nav-gallery">Gallery</a></li>
-                <li><a href="index.html#footer" class="nav-link" id="nav-contact">Visit Us</a></li>
+                <li><a href="/home" class="nav-link active" id="nav-home">Home</a></li>
+                <li><a href="/menu" class="nav-link" id="nav-lineup"> Menu</a></li>
+                <li><a href="/home#gallery" class="nav-link" id="nav-gallery">Gallery</a></li>
+                <li><a href="/home#footer" class="nav-link" id="nav-contact">Visit Us</a></li>
                 <li>
                     <button class="nav-cta open-order-btn" id="header-order-btn">Order Online</button>
                 </li>
@@ -720,7 +723,7 @@
             <h1 class="hero-brand-name">The Seoulful</h1>
             <p class="hero-saying">Be yourself — that is the most universal.</p>
             <div class="hero-actions">
-                <a href="menu.html" class="btn-primary-hero">
+                <a href="/menu" class="btn-primary-hero">
                     View Menu
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12" />
@@ -794,7 +797,7 @@
                             love and fresh authentic ingredients.
                         </p>
                         <div class="split-info-actions">
-                            <a href="menu.html" class="btn-primary">View Full Menu</a>
+                            <a href="/menu" class="btn-primary">View Full Menu</a>
                             <button class="btn-secondary open-order-btn">Order Online Now</button>
                         </div>
                     </div>
@@ -875,13 +878,9 @@
         </div>
         <div class="drawer-content">
             <div class="drawer-img"><img src="" alt="" id="drawer-product-img"></div>
-            <div class="drawer-meta" id="drawer-product-tags"></div>
             <h2 class="drawer-title" id="drawer-product-title">Product Title</h2>
             <p class="drawer-desc" id="drawer-product-desc"></p>
-            <h4 class="drawer-section-title">Highlighted Ingredients</h4>
-            <ul class="drawer-list" id="drawer-product-ingredients"></ul>
             <div class="drawer-order-shortcut">
-                <p class="drawer-order-text">Craving this Seoulful bite? Order it fresh directly to your door.</p>
                 <button class="btn-primary open-order-btn" style="width:100%;justify-content:center;" id="drawer-order-btn">Order Now</button>
             </div>
         </div>
@@ -920,7 +919,7 @@
                                 <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
                             </svg>
                         </a>
-                        <a href="#" class="footer-social-icon" aria-label="Google Maps">
+                        <a href="https://maps.app.goo.gl/tn3f263MJAHqiQ3c8?g_st=ii" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Google Maps">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                                 <circle cx="12" cy="10" r="3" />
@@ -931,9 +930,9 @@
                 <div class="footer-col">
                     <h3 class="footer-title">Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#" class="footer-link">Home</a></li>
-                        <li><a href="menu.html" class="footer-link">Daily Lineup</a></li>
-                        <li><a href="#gallery" class="footer-link">Seoulful Gallery</a></li>
+                        <li><a href="/home" class="footer-link">Home</a></li>
+                        <li><a href="/menu" class="footer-link">Daily Lineup</a></li>
+                        <li><a href="/home#gallery" class="footer-link">Seoulful Gallery</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
