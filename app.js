@@ -108,49 +108,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const dImg = document.getElementById('drawer-product-img');
   const dTitle = document.getElementById('drawer-product-title');
   const dDesc = document.getElementById('drawer-product-desc');
-  const dIngredients = document.getElementById('drawer-product-ingredients');
-  const dTags = document.getElementById('drawer-product-tags');
 
   // Open product drawer
   productCards.forEach(card => {
     card.addEventListener('click', () => {
-      const titleText = card.querySelector('.product-title').textContent;
-      const descText = card.getAttribute('data-desc') || card.querySelector('.product-desc').textContent;
-      const tagsString = card.getAttribute('data-tags') || '';
-      const ingredientsString = card.getAttribute('data-ingredients') || '';
-      const imgSrc = card.getAttribute('data-img') || card.querySelector('img').getAttribute('src');
-
-      // Populate Spotlight drawer details
-      dImg.setAttribute('src', imgSrc);
-      dImg.setAttribute('alt', titleText);
-      dTitle.textContent = titleText;
-      dDesc.textContent = descText;
-
-      // Populate tags
-      dTags.innerHTML = '';
-      if (tagsString) {
-        tagsString.split(',').forEach(tag => {
-          const span = document.createElement('span');
-          span.className = 'drawer-tag tag-default';
-          span.textContent = tag.trim();
-          dTags.appendChild(span);
-        });
+      // 1. Get title, replace line breaks with space, and ensure space before <em> text
+      const titleEl = card.querySelector('.product-title') || card.querySelector('.sf-card-name');
+      let titleText = '';
+      if (titleEl) {
+        const temp = titleEl.cloneNode(true);
+        temp.querySelectorAll('br').forEach(br => br.replaceWith(' '));
+        const em = temp.querySelector('em');
+        if (em && em.textContent) {
+          em.replaceWith(' ' + em.textContent.trim());
+        }
+        titleText = temp.textContent.trim().replace(/\s+/g, ' ');
       }
 
-      // Populate ingredients list
-      dIngredients.innerHTML = '';
-      if (ingredientsString) {
-        ingredientsString.split(',').forEach(ing => {
-          const li = document.createElement('li');
-          li.className = 'drawer-list-item';
-          li.textContent = ing.trim();
-          dIngredients.appendChild(li);
-        });
-      } else {
-        const li = document.createElement('li');
-        li.className = 'drawer-list-item';
-        li.textContent = "Baked fresh daily in small batches with artisanal flour, butter, and love.";
-        dIngredients.appendChild(li);
+      // 2. Get description
+      const descEl = card.querySelector('.product-desc') || card.querySelector('.sf-card-desc');
+      const descText = card.getAttribute('data-desc') || (descEl ? descEl.textContent.trim() : '');
+
+      // 3. Get image
+      const imgEl = card.querySelector('img');
+      const imgSrc = card.getAttribute('data-img') || (imgEl ? imgEl.getAttribute('src') : '');
+
+      // Populate Spotlight drawer details
+      if (dImg) {
+        dImg.setAttribute('src', imgSrc);
+        dImg.setAttribute('alt', titleText);
+      }
+      if (dTitle) {
+        dTitle.textContent = titleText;
+      }
+      if (dDesc) {
+        dDesc.textContent = descText;
       }
 
       // Show drawer
