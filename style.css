@@ -1364,6 +1364,15 @@ section {
   color: rgba(250, 246, 240, 0.7);
 }
 
+.footer-info-item.address-link {
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+
+.footer-info-item.address-link:hover {
+  color: var(--accent-gold);
+}
+
 .footer-info-icon {
   color: var(--accent-gold);
   font-size: 18px;
@@ -2424,5 +2433,99 @@ section {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Mobile-Landscape Optimization & Spacing Tightening (Vertical Stretch Fixes)
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  section {
+    padding: 40px 0 !important; /* overall reduction of vertical section padding */
+  }
+  
+  .menu-page-intro {
+    padding: 100px 0 20px !important; /* reduce top header spacing on menu page */
+  }
+
+  .container {
+    padding: 0 16px !important; /* expand grid width slightly on small screens */
+  }
+
+  /* Swipable Single-Row Filters */
+  .lineup-filter {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding: 4px 4px 8px !important;
+    margin-bottom: 24px !important;
+    gap: 8px !important;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+  
+  .lineup-filter::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .filter-btn {
+    font-size: 13px !important;
+    padding: 8px 16px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Tighten Menu Category Headers on Mobile */
+  .category-group-header {
+    margin-bottom: 20px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .category-group-title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+  }
+
+  .category-logo-inline {
+    height: 24px !important;
+    margin-right: 4px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .category-group-title span {
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
+    margin-left: auto !important; /* push category subheaders to the right side of the row */
+    flex-shrink: 0 !important;
+  }
+
+  /* Compact Product Cards for Mobile Gaps */
+  .sf-card-body {
+    padding: 10px 10px 12px !important;
+  }
+
+  .sf-card-name {
+    font-size: 15px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .sf-card-desc {
+    margin-bottom: 8px !important;
+    height: 2.7em !important;
+    font-size: 11px !important;
+  }
+}
+
 
 
