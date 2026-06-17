@@ -99,9 +99,9 @@
       vertical-align: middle;
       margin-right: 12px;
       border-radius: 8px;
-      border: 1px solid rgba(122, 59, 30, 0.15);
-      padding: 2px;
-      background: var(--white);
+      border: none;
+      padding: 0;
+      background: transparent;
       object-fit: contain;
     }
 
@@ -119,155 +119,7 @@
       font-family: var(--ff-body) !important;
     }
 
-    /* ─── NAV OVERRIDES to match index.html nav bar exactly ─────────────────── */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(245, 235, 217, 0.88) !important;
-      backdrop-filter: blur(12px) !important;
-      -webkit-backdrop-filter: blur(12px) !important;
-      border-bottom: 1px solid rgba(122, 59, 30, 0.15) !important;
-      height: auto !important;
-      transition: none !important;
-    }
 
-    .header.scrolled {
-      background: rgba(245, 235, 217, 0.88) !important;
-      backdrop-filter: blur(12px) !important;
-      -webkit-backdrop-filter: blur(12px) !important;
-      border-bottom: 1px solid rgba(122, 59, 30, 0.15) !important;
-      height: auto !important;
-      box-shadow: none !important;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 28px;
-      height: 62px !important;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-img {
-      height: 50px !important;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .logo-tag {
-      font-size: 11px !important;
-      letter-spacing: 0.16em !important;
-      text-transform: uppercase !important;
-      color: var(--text-muted) !important;
-      font-family: var(--ff-body) !important;
-    }
-
-    .nav-menu {
-      display: flex !important;
-      align-items: center !important;
-      gap: 32px !important;
-      flex-direction: row !important;
-      position: static !important;
-      background: transparent !important;
-      padding: 0 !important;
-      box-shadow: none !important;
-      border: none !important;
-    }
-
-    .nav-link {
-      font-size: 13px !important;
-      letter-spacing: 0.06em !important;
-      color: var(--brown-mid) !important;
-      transition: color 0.2s !important;
-      padding: 0 !important;
-      font-family: var(--ff-body) !important;
-      font-weight: 400 !important;
-    }
-
-    .nav-link::after {
-      display: none !important;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-      color: var(--brown-dark) !important;
-    }
-
-    .nav-cta {
-      font-size: 13px !important;
-      font-family: var(--ff-body) !important;
-      letter-spacing: 0.08em !important;
-      background: var(--brown-dark) !important;
-      color: var(--cream) !important;
-      border: none !important;
-      border-radius: 40px !important;
-      padding: 8px 20px !important;
-      cursor: pointer !important;
-      transition: background 0.2s, transform 0.15s !important;
-      box-shadow: none !important;
-      font-weight: 400 !important;
-    }
-
-    .nav-cta:hover {
-      background: var(--brown-mid) !important;
-      transform: translateY(-1px) !important;
-    }
-
-    .mobile-toggle {
-      display: none !important;
-      flex-direction: column;
-      gap: 5px;
-      background: none !important;
-      border: none !important;
-      cursor: pointer !important;
-      padding: 4px !important;
-      height: auto !important;
-      width: auto !important;
-    }
-
-    .mobile-toggle span {
-      display: block !important;
-      width: 22px !important;
-      height: 2px !important;
-      background: var(--brown-dark) !important;
-      border-radius: 2px !important;
-    }
-
-    @media (max-width: 768px) {
-      .nav-menu {
-        display: none !important;
-      }
-
-      .mobile-toggle {
-        display: flex !important;
-      }
-
-      .nav-menu.open,
-      .nav-menu.active {
-        display: flex !important;
-        flex-direction: column !important;
-        position: absolute !important;
-        top: 62px !important;
-        left: 0 !important;
-        right: 0 !important;
-        background: var(--white) !important;
-        padding: 20px 28px !important;
-        gap: 16px !important;
-        border-bottom: 1px solid rgba(122, 59, 30, 0.15) !important;
-        box-shadow: 0 8px 20px rgba(61, 31, 13, 0.06) !important;
-      }
-    }
 
     /* Redesigned Minimal Order Modal */
     .order-modal-backdrop {
@@ -376,7 +228,7 @@
       
       <ul class="nav-menu" id="nav-menu">
         <li><a href="index.html" class="nav-link" id="nav-home">Home</a></li>
-        <li><a href="menu.html" class="nav-link active" id="nav-lineup">The Lineup</a></li>
+        <li><a href="menu.html" class="nav-link active" id="nav-lineup">Menu</a></li>
         <li><a href="index.html#gallery" class="nav-link" id="nav-gallery">Gallery</a></li>
         <li><a href="index.html#footer" class="nav-link" id="nav-contact">Visit Us</a></li>
         <li>
@@ -405,7 +257,7 @@
         <button class="filter-btn active" data-filter="all" id="btn-filter-all">All Items</button>
         <button class="filter-btn" data-filter="bakery" id="btn-filter-bakery">Bakery & Salt Bread</button>
         <button class="filter-btn" data-filter="bunsik" id="btn-filter-bunsik">Seoulful Bunsik</button>
-        <button class="filter-btn" data-filter="drinks" id="btn-filter-drinks">Farm Lattes & Ades</button>
+        <button class="filter-btn" data-filter="drinks" id="btn-filter-drinks">Lattes & Ades</button>
       </div>
       
       <div class="category-container">
@@ -883,23 +735,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Item 11: Party Tray B -->
-            <div class="product-card sf-card" data-product="party-tray-b" data-tags="Combo,Feast,Value" data-desc="The ultimate feast: Creamy Rose Tteokbokki, Classic Seoul Tteokbokki, Bulgogi Kimbap, and 3 signature breads (Fresh Milk Cream, Earl Grey, Salted Butter), plus a free Seoulful Cereal Latte!" data-ingredients="Rose Tteokbokki, Classic Tteokbokki, Bulgogi Kimbap, Fresh Milk Cream bread, Earl Grey bread, Salted Butter bread, Cereal Latte" data-img="images/bear.jpeg">
-              <div class="sf-card-img">
-                <img src="images/bear.jpeg" alt="Party Tray B">
-              </div>
-              <div class="sf-card-body">
-                <div class="sf-card-name product-title">Party Tray<br><em>B</em></div>
-                <div class="sf-card-desc">The ultimate feast: Creamy Rose Tteokbokki, Classic Seoul Tteokbokki, Bulgogi Kimbap, and 3 signature breads (Fresh Milk Cream, Earl Grey, Salted Butter), plus a free Seoulful Cereal Latte!</div>
-                <div class="sf-card-footer">
-                  <span class="sf-card-price">$70.00</span>
-                  <button class="sf-card-btn open-order-btn" aria-label="Add to order" onclick="event.stopPropagation();">
-                    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         
@@ -911,13 +746,13 @@
           
           <div class="products-grid">
             <!-- Item 1: SEOULFUL CEREAL LATTE -->
-            <div class="product-card sf-card" data-product="seoulful-cereal" data-tags="Traditional,Nutty,Healthy" data-desc="5-Grain Superfood Power , Nutty, toasty, and creamy — inspired by Korea’s classic misugaru drink, reimagined the Seoulful way. Free with Party Tray B" data-ingredients="Traditional Korean Misutgaru (barley, brown rice, soy bean, black rice, sesame), honey, warm milk" data-img="images/drinks/cerealLatte.png">
+            <div class="product-card sf-card" data-product="seoulful-cereal" data-tags="Traditional,Nutty,Healthy" data-desc="5-Grain Superfood Power, Nutty, toasty, and creamy — inspired by Korea’s classic misugaru drink, reimagined the Seoulful way." data-ingredients="Traditional Korean Misutgaru (barley, brown rice, soy bean, black rice, sesame), honey, warm milk" data-img="images/drinks/cerealLatte.png">
               <div class="sf-card-img">
                 <img src="images/drinks/cerealLatte.png" alt="SEOULFUL CEREAL LATTE">
               </div>
               <div class="sf-card-body">
                 <div class="sf-card-name product-title">Seoulful Cereal<br><em>Latte</em></div>
-                <div class="sf-card-desc">5-Grain Superfood Power , Nutty, toasty, and creamy — inspired by Korea’s classic misugaru drink, reimagined the Seoulful way. Free with Party Tray B</div>
+                <div class="sf-card-desc">5-Grain Superfood Power, Nutty, toasty, and creamy — inspired by Korea’s classic misugaru drink, reimagined the Seoulful way.</div>
                 <div class="sf-card-footer">
                   <span class="sf-card-price">$7.80</span>
                   <button class="sf-card-btn open-order-btn" aria-label="Add to order" onclick="event.stopPropagation();">
@@ -1177,38 +1012,31 @@
        ========================================================================== -->
   <section class="social-connect reveal" id="gallery">
     <div class="container">
-      <div class="social-card">
-        <span class="section-tag">Follow Our Journey</span>
-        <h2 class="section-title">Seoulful Food &times; Seoulful Mood</h2>
-        <p class="social-tagline">
-          Follow us to see updates, special menus, and promotions.
-        </p>
-        
-        <div class="social-channels">
-          <!-- Instagram -->
-          <a href="https://www.instagram.com/the.seoulful/" target="_blank" class="social-btn btn-instagram" id="social-instagram">
-            <span class="social-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-            </span>
-            <div class="social-info">
-              <span class="social-platform">Instagram</span>
-              <span class="social-handle">@the.seoulful</span>
-            </div>
-            <span class="social-arrow">→</span>
-          </a>
-          
-          <!-- TikTok -->
-          <a href="https://www.tiktok.com/@theseoulful" target="_blank" class="social-btn btn-tiktok" id="social-tiktok">
-            <span class="social-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-            </span>
-            <div class="social-info">
-              <span class="social-platform">TikTok</span>
-              <span class="social-handle">@theseoulful</span>
-            </div>
-            <span class="social-arrow">→</span>
-          </a>
-        </div>
+      <div class="social-connect-header">
+        <h2 class="section-title">Seoulful Mood</h2>
+        <p class="social-connect-handle">@the.seoulful — Richmond, BC</p>
+      </div>
+      <div class="instagram-bento-grid">
+        <a href="https://www.instagram.com/reel/DY5jx1TK2Iv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
+          <img src="images/ig/ins0.png" >
+        </a>
+        <a href="https://www.instagram.com/p/DZD-qO1E15i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
+          <img src="images/ig/ins1.png" >
+        </a>
+        <a href="https://www.instagram.com/p/DYqa2JuEyMq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
+          <img src="images/ig/ins2.png" >
+        </a>
+        <a href="https://www.instagram.com/p/DX0GwWvD7VT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
+          <img src="images/ig/ins3.png" >
+        </a>
+      </div>
+      <div class="instagram-cta">
+        <a class="ig-link" href="https://www.instagram.com/the.seoulful/" target="_blank">
+          Follow for daily drops
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
