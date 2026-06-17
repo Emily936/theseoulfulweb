@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="/breadlogo.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Seoulful | Warm Seoul-Inspired Korean Bakery</title>
+    <meta name="description"
+        content="Welcome to The Seoulful - a warm, cozy Seoul-inspired Korean bakery in Richmond, BC. Discover our artisanal Salted Butter Bread, signature Kimbap, authentic Tteokbokki, and specialty lattes.">
+    <meta property="og:title" content="The Seoulful | Warm Seoul-Inspired Korean Bakery">
+    <meta property="og:description" content="Seoulful food × Seoulful mood. Be yourself. That is the most universal.">
+    <meta property="og:type" content="website">
+
+    <style>
+        @font-face {
+            font-family: 'Gamja Flower';
+            src: url('/assets/GamjaFlower-Regular-BQzhMffE.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* ─── DESIGN TOKENS ──────────────────────────────────────────────────── */
+        :root {
+            --cream: #F5EBD9;
+            --cream-mid: #EDD9BE;
+            --brown-dark: #3D1F0D;
+            --brown-mid: #7A3B1E;
+            --brown-light: #C07A46;
+            --white: #FDFAF5;
+            --text-body: #4A2C14;
+            --text-muted: #9B7050;
+
+            --ff-display: 'Georgia', 'Times New Roman', serif;
+            --ff-body: system-ui, -apple-system, sans-serif;
+
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+        }
+
+        /* ─── RESET ──────────────────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--cream) !important;
+            color: var(--text-body) !important;
+            font-family: var(--ff-body) !important;
+            font-size: 16px;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        img, video { display: block; max-width: 100%; }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+
+        /* ─── HERO ───────────────────────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            height: calc(100vh - 300px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            align-items: center;
+            padding-top: 62px;
+            padding-left: 62px;
+        }
+
+        .hero-carousel-container { position: absolute; inset: 0; z-index: 0; }
+
+        .hero-carousel-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .hero-carousel-slide.active { opacity: 1; }
+
+        .hero-carousel-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(to bottom,
+                rgba(30, 10, 0, 0.38) 0%,
+                rgba(30, 10, 0, 0.52) 60%,
+                rgba(30, 10, 0, 0.72) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0;
+            padding: 0 24px;
+        }
+
+        .hero-bear {
+            width: clamp(180px, 28vw, 320px);
+            height: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            margin-bottom: -24px;
+        }
+
+        .hero-brand-name {
+            font-family: var(--ff-display);
+            font-size: clamp(38px, 7vw, 80px);
+            font-weight: 400;
+            color: var(--cream);
+            letter-spacing: 0.02em;
+            line-height: 1.05;
+        }
+
+        .hero-saying {
+            margin-top: 14px;
+            font-size: clamp(13px, 1.8vw, 17px);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(245, 235, 217, 0.82);
+            font-family: var(--ff-body);
+            font-weight: 300;
+        }
+
+        .hero-actions {
+            margin-top: 36px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary-hero {
+            background: var(--brown-dark);
+            color: var(--cream);
+            border: none;
+            border-radius: 40px;
+            padding: 13px 28px;
+            font-size: 14px;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .btn-primary-hero:hover { background: var(--brown-mid); transform: translateY(-2px); }
+
+        .btn-secondary-hero {
+            background: transparent;
+            color: var(--cream);
+            border: 1.5px solid rgba(245, 235, 217, 0.7);
+            border-radius: 40px;
+            padding: 13px 28px;
+            font-size: 14px;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            font-family: var(--ff-body);
+        }
+
+        .btn-secondary-hero:hover { background: rgba(245, 235, 217, 0.15); transform: translateY(-2px); }
+
+        .carousel-arrow {
+            position: absolute;
+            z-index: 6;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: rgba(245, 235, 217, 0.7);
+            width: auto;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .carousel-arrow:hover {
+            color: var(--cream);
+            transform: translateY(-50%) scale(1.15);
+        }
+        .carousel-arrow.prev { left: 20px; }
+        .carousel-arrow.next { right: 20px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(245, 235, 217, 0.45);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .carousel-dot.active { background: var(--cream); transform: scale(1.3); }
+
+        /* ─── HORIZONTAL BAKED-STILLS STRIP ──────────────────────────────────── */
+        .stills-strip {
+            background: var(--cream-mid);
+            padding: 0;
+            overflow: hidden;
+            height: 300;
+            position: relative;
+        }
+
+        .stills-track-outer { width: 100%; height: 100%; overflow: hidden; position: relative; }
+
+        .stills-track {
+            display: flex;
+            gap: 5px;
+            height: 100%;
+            width: max-content;
+            padding-right: 6px;
+            animation: stills-marquee 25s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes stills-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .still-img {
+            flex-shrink: 0;
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        /* ─── SPLIT INFO SECTION ─────────────────────────────────────────────── */
+        .split-info-section { background: var(--white); padding: 80px 0; }
+
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+        .split-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 860px) {
+            .split-info-grid { grid-template-columns: 1fr; }
+        }
+
+        .split-info-left {
+            position: relative;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 480px !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            overflow: visible !important;
+        }
+
+        .split-info-right { display: flex; flex-direction: column; justify-content: center; }
+        .info-content-box {}
+
+        .section-tag {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--brown-light);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .split-info-title {
+            font-family: var(--ff-display);
+            font-size: clamp(26px, 3.5vw, 40px);
+            font-weight: 400;
+            color: var(--brown-dark);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .split-info-description {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.75;
+            margin-bottom: 30px;
+        }
+
+        .split-info-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--brown-dark);
+            color: var(--cream);
+            border: none;
+            border-radius: 40px;
+            padding: 12px 24px;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            font-family: var(--ff-body);
+        }
+
+        .btn-primary:hover { background: var(--brown-mid); transform: translateY(-1px); }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            color: var(--brown-dark);
+            border: 1.5px solid var(--brown-dark);
+            border-radius: 40px;
+            padding: 12px 24px;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            font-family: var(--ff-body);
+        }
+
+        .btn-secondary:hover { background: rgba(61, 31, 13, 0.06); transform: translateY(-1px); }
+
+        /* ─── BTS SECTION ────────────────────────────────────────────────────── */
+        .bts-section {
+            background: var(--cream-mid);
+            overflow: hidden;
+            padding: 50px 0 !important;
+        }
+
+        .bts-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 320px;
+        }
+
+        .bts-left {
+            padding: 0 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bts-title {
+            font-family: var(--ff-display);
+            font-size: clamp(28px, 3.2vw, 42px);
+            font-weight: 400;
+            color: var(--brown-dark);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .bts-description {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.8;
+            opacity: 0.88;
+        }
+
+        .bts-right {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            height: 100%;
+        }
+
+        .bts-video-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: var(--cream-mid);
+            height: 100%;
+        }
+
+        .bts-video-wrapper video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 860px) {
+            .carousel-arrow { display: none !important; }
+            .bts-inner { grid-template-columns: 1fr; height: auto; }
+            .bts-left { padding: 32px 24px; }
+            .bts-right { height: 360px; }
+        }
+
+        /* ─── REVIEWS ────────────────────────────────────────────────────────── */
+        .reviews {
+            background: var(--white);
+            padding: 42px 0 !important;
+        }
+
+        .section-title {
+            font-family: var(--ff-display);
+            font-size: clamp(24px, 3.2vw, 36px);
+            font-weight: 400;
+            color: var(--brown-dark);
+            margin-top: 8px;
+        }
+
+        .reviews-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+            align-items: center;
+            max-width: 960px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .review-item { text-align: center; width: 100%; }
+
+        .review-text {
+            font-family: var(--ff-display);
+            font-size: clamp(20px, 2.5vw, 26px) !important;
+            line-height: 1.5 !important;
+            color: var(--brown-dark) !important;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .review-author {
+            font-family: var(--ff-body);
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+
+
+        /* ─── ORDER MODAL ────────────────────────────────────────────────────── */
+        .order-modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(30, 10, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 200;
+        }
+
+        .order-modal-backdrop.open, .order-modal-backdrop.active { display: block; }
+
+        .order-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 201;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px 32px;
+            width: 90%;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid rgba(61, 31, 13, 0.12);
+            box-shadow: 0 20px 40px rgba(61, 31, 13, 0.15);
+            box-sizing: border-box;
+        }
+
+        .order-modal.open, .order-modal.active { display: block; }
+
+        .order-modal-title {
+            font-family: var(--ff-display);
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--brown-dark);
+            text-align: center;
+            margin-bottom: 24px;
+            letter-spacing: 0.02em;
+        }
+
+        .order-platforms-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .platform-link-btn {
+            display: block;
+            text-align: center;
+            font-family: var(--ff-body);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--brown-dark);
+            background: transparent;
+            border: 1px solid rgba(61, 31, 13, 0.22);
+            padding: 14px 20px;
+            border-radius: 40px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .platform-link-btn:hover {
+            background: var(--brown-dark);
+            color: var(--cream);
+            border-color: var(--brown-dark);
+            transform: translateY(-1px);
+        }
+
+        .order-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        .order-modal-close:hover { color: var(--brown-dark); }
+
+        /* ─── DRAWER ─────────────────────────────────────────────────────────── */
+        .drawer-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(30, 10, 0, 0.4);
+            z-index: 150;
+        }
+
+        .drawer-backdrop.open, .drawer-backdrop.active { display: block; }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: min(420px, 100vw);
+            height: 100%;
+            background: var(--white);
+            z-index: 151;
+            overflow-y: auto;
+            transition: right 0.35s ease;
+            padding: 28px 24px;
+        }
+
+        .drawer.open, .drawer.active { right: 0; transform: translate(0); }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .drawer-header-title { font-family: var(--ff-display); font-size: 20px; color: var(--brown-dark); }
+        .drawer-close { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); }
+        .drawer-img { border-radius: var(--radius-md); overflow: hidden; margin-bottom: 18px; }
+        .drawer-img img { width: 100%; height: 220px; object-fit: cover; }
+        .drawer-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .drawer-title { font-family: var(--ff-display); font-size: 24px; color: var(--brown-dark); margin-bottom: 10px; }
+        .drawer-desc { font-size: 14px; color: var(--text-body); line-height: 1.7; margin-bottom: 20px; }
+
+        .drawer-section-title {
+            font-size: 12px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .drawer-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+
+        .drawer-list li {
+            font-size: 14px;
+            color: var(--text-body);
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .drawer-list li::before { content: '·'; position: absolute; left: 0; color: var(--brown-light); }
+        .drawer-order-text { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+
+        /* ─── FOOTER ─────────────────────────────────────────────────────────── */
+        .footer { background: var(--brown-dark); color: var(--cream); padding: 60px 0 32px; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1.4fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+        }
+
+        .footer-tagline { font-size: 13.5px; color: rgba(245, 235, 217, 0.65); line-height: 1.7; margin-bottom: 20px; }
+
+        .footer-socials { display: flex; gap: 12px; }
+
+        .footer-social-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(245, 235, 217, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(245, 235, 217, 0.7);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .footer-social-icon:hover { border-color: var(--cream); color: var(--cream); }
+
+        .footer-title {
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(245, 235, 217, 0.55);
+            margin-bottom: 16px;
+        }
+
+        .footer-links { display: flex; flex-direction: column; gap: 10px; }
+
+        .footer-link { font-size: 14px; color: rgba(245, 235, 217, 0.8); transition: color 0.2s; }
+        .footer-link:hover { color: var(--cream); }
+
+        .footer-info-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+        .footer-info-icon { color: var(--brown-light); flex-shrink: 0; margin-top: 2px; }
+
+        .footer-info-text { font-size: 13px; color: rgba(245, 235, 217, 0.75); line-height: 1.6; }
+        .footer-info-text strong { display: block; color: var(--cream); margin-bottom: 3px; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(245, 235, 217, 0.12);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 12.5px;
+            color: rgba(245, 235, 217, 0.45);
+        }
+
+        /* ─── REVEAL ANIMATION ───────────────────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.active, .reveal.visible { opacity: 1; transform: none; }
+    </style>
+  <script type="module" crossorigin src="/assets/app-UTse-edv.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/app-BFzrX5bZ.css">
+</head>
+
+<body>
+
+    <!-- ====================================================================
+       NAV
+       ==================================================================== -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="/" class="logo-group" id="logo">
+                <img src="/assets/breadlogo-Cbqi6DVA.PNG" alt="The Seoulful Logo" class="logo-img">
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/" class="nav-link active" id="nav-home">Home</a></li>
+                <li><a href="/menu" class="nav-link" id="nav-lineup"> Menu</a></li>
+                <li><a href="/#gallery" class="nav-link" id="nav-gallery">Gallery</a></li>
+                <li><a href="/#footer" class="nav-link" id="nav-contact">Visit Us</a></li>
+                <li>
+                    <button class="nav-cta open-order-btn" id="header-order-btn">Order Online</button>
+                </li>
+            </ul>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ====================================================================
+       HERO
+       ==================================================================== -->
+    <section class="hero" id="home">
+        <div class="hero-carousel-container">
+            <div class="hero-carousel-slide active" style="background-image: url('/assets/IMG_9716-t09gxwoc.jpg');"></div>
+            <div class="hero-carousel-slide" style="background-image: url('/assets/IMG_0296-C1j8Ph34.jpg');"></div>
+            <div class="hero-carousel-slide" style="background-image: url('/assets/IMG_0284-BKu3wvae.jpg');"></div>
+            <div class="hero-carousel-slide" style="background-image: url('/assets/IMG_9569-CxEk3NvT.jpg');"></div>
+        </div>
+        <div class="hero-carousel-overlay"></div>
+
+        <div class="hero-content">
+            <h1 class="hero-brand-name">The Seoulful</h1>
+            <p class="hero-saying">Be yourself — that is the most universal.</p>
+            <div class="hero-actions">
+                <a href="/menu" class="btn-primary-hero">
+                    View Menu
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </a>
+                <button class="btn-secondary-hero open-order-btn">Order Online</button>
+            </div>
+        </div>
+
+        <button class="carousel-arrow prev" id="carousel-prev" aria-label="Previous slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="15 18 9 12 15 6" />
+            </svg>
+        </button>
+        <button class="carousel-arrow next" id="carousel-next" aria-label="Next slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </button>
+        <div class="carousel-dots" id="carousel-dots">
+            <span class="carousel-dot active" data-index="0"></span>
+            <span class="carousel-dot" data-index="1"></span>
+            <span class="carousel-dot" data-index="2"></span>
+            <span class="carousel-dot" data-index="3"></span>
+        </div>
+    </section>
+
+    <!-- ====================================================================
+       HORIZONTAL BAKED-STILLS STRIP
+       ==================================================================== -->
+    <div class="stills-strip" aria-hidden="true">
+        <div class="stills-track-outer">
+            <div class="stills-track" id="stills-track">
+                <img src="/assets/2-m00eqdGY.png" alt="" class="still-img">
+                <img src="/assets/4-BJubgtsc.png" alt="" class="still-img">
+                <img src="/assets/5-Bz5vDKvn.png" alt="" class="still-img">
+                <img src="/assets/6-U-sEqQst.png" alt="" class="still-img">
+                <img src="/assets/7-Bq98n6Ic.png" alt="" class="still-img">
+                <img src="/assets/8-ogomWZQa.png" alt="" class="still-img">
+                <img src="/assets/9-kg1-rGxA.png" alt="" class="still-img">
+                <!-- Duplicate set for seamless looping -->
+                <img src="/assets/2-m00eqdGY.png" alt="" class="still-img">
+                <img src="/assets/4-BJubgtsc.png" alt="" class="still-img">
+                <img src="/assets/5-Bz5vDKvn.png" alt="" class="still-img">
+                <img src="/assets/6-U-sEqQst.png" alt="" class="still-img">
+                <img src="/assets/7-Bq98n6Ic.png" alt="" class="still-img">
+                <img src="/assets/8-ogomWZQa.png" alt="" class="still-img">
+                <img src="/assets/9-kg1-rGxA.png" alt="" class="still-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+       HOURS + LOCATION / MENU (split info)
+       ==================================================================== -->
+    <section class="split-info-section reveal" id="info-section">
+        <div class="container">
+            <div class="split-info-grid">
+                <div class="split-info-left">
+                    <img src="/assets/joy_1-B1OL7uaQ.jpg" alt="The Seoulful Joy Mascot"
+                        style="max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply;">
+                </div>
+                <div class="split-info-right">
+                    <div class="info-content-box">
+                        <span class="section-tag">Seoulful food × Seoulful mood</span>
+                        <h2 class="split-info-title"><em>Feed Your Soul</em></h2>
+                        <p class="split-info-description">
+                            To the ones who taste this, inside is not just food, but our moments. It is the sweet and spicy aroma drifting through beloved alleyways, and the warmth of a meal shared with loved ones. Only after coming all the way to Vancouver did we realize how precious those flavours truly were. 
+                        </p>
+                        <div class="split-info-actions">
+                            <a href="/menu" class="btn-primary">View Full Menu</a>
+                            <button class="btn-secondary open-order-btn">Order Online Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================================
+       BTS — Baked Fresh Daily
+       ==================================================================== -->
+    <section class="bts-section reveal" id="bts-section">
+        <div class="bts-inner">
+            <div class="bts-left">
+                <h2 class="bts-title"><em>Baked Fresh Daily</em></h2>
+
+ <p class="bts-description">
+                        Our longing for home met the fresh ingredients here, and was reborn as the most honest and authentic taste of Seoul. We believe that the most personal taste is, in the end, the most universal.
+                        </p>
+                <p class="bts-description">
+                              Now, through this flavour, feel the <b><em>Seoulful.</em></b>
+                        </p> 
+            </div>
+            <div class="bts-right">
+                <div class="bts-video-wrapper">
+                    <video src="/assets/IMG_7578-CK_rxQGA.MOV" autoplay loop muted playsinline></video>
+                </div>
+                <div class="bts-video-wrapper">
+                    <video src="/assets/IMG_9591-DqMTKnwd.MOV" autoplay loop muted playsinline></video>
+                </div>
+                <div class="bts-video-wrapper">
+                    <video src="/assets/IMG_9612-BDmRa_qf.MOV" autoplay loop muted playsinline></video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================================
+       SOCIAL CONNECT — Instagram
+       ==================================================================== -->
+    <section class="social-connect reveal" id="gallery">
+        <div class="container">
+            <div class="social-connect-header">
+                <h2 class="section-title"><em>Seoulful Mood</em></h2>
+                <p class="social-connect-handle">@the.seoulful — Richmond, BC</p>
+            </div>
+            <div class="instagram-bento-grid">
+                <a href="https://www.instagram.com/reel/DY5jx1TK2Iv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
+                    <img src="/assets/ins0-DUeQDmjp.png" >
+                </a>
+                <a href="https://www.instagram.com/p/DZD-qO1E15i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
+                    <img src="/assets/ins1-EsuvWZC6.png" >
+                </a>
+                <a href="https://www.instagram.com/p/DYqa2JuEyMq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
+                    <img src="/assets/ins2-C4qbM43v.png" >
+                </a>
+                <a href="https://www.instagram.com/p/DX0GwWvD7VT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="bento-item">
+                    <img src="/assets/ins3-BK3kciBo.png" >
+                </a>
+            </div>
+            <div class="instagram-cta">
+                <a class="ig-link" href="https://www.instagram.com/the.seoulful/" target="_blank">
+                    Follow for daily drops
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====================================================================
+       DRAWERS / MODALS
+       ==================================================================== -->
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="drawer" id="product-drawer">
+        <div class="drawer-header">
+            <h3 class="drawer-header-title">Product Spotlight</h3>
+            <button class="drawer-close" id="drawer-close" aria-label="Close">✕</button>
+        </div>
+        <div class="drawer-content">
+            <div class="drawer-img"><img src="" alt="" id="drawer-product-img"></div>
+            <h2 class="drawer-title" id="drawer-product-title">Product Title</h2>
+            <p class="drawer-desc" id="drawer-product-desc"></p>
+            <div class="drawer-order-shortcut">
+                <button class="btn-primary open-order-btn" style="width:100%;justify-content:center;" id="drawer-order-btn">Order Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="order-modal-backdrop" id="order-backdrop"></div>
+    <div class="order-modal" id="order-modal">
+        <button class="order-modal-close" id="order-modal-close" aria-label="Close">✕</button>
+        <h3 class="order-modal-title">Order Online</h3>
+        <div class="order-platforms-list">
+            <a href="https://www.ubereats.com/ca/store/the-seoulful-4940-no-3-rd-125/QaK7dIHBR6G2hi6E85c6Xg" target="_blank" class="platform-link-btn" id="order-uber-btn">Uber Eats</a>
+            <a href="https://www.doordash.com/en-CA/store/the-seoulful-richmond-37482117/85314972/" target="_blank" class="platform-link-btn" id="order-doordash-btn">DoorDash</a>
+            <a href="https://order.fantuan.ca/en-US/store/Restaurant/CA-4801571" target="_blank" class="platform-link-btn" id="order-fantuan-btn">Fantuan Delivery</a>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+       FOOTER
+       ==================================================================== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <p class="footer-tagline">Be Yourself. That is most universal. Bringing you cozy artisanal baking,
+                        warm comfort food, and Seoul-inspired moods.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/the.seoulful/" target="_blank" class="footer-social-icon" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@theseoulful" target="_blank" class="footer-social-icon" aria-label="TikTok">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                            </svg>
+                        </a>
+                        <a href="https://maps.app.goo.gl/tn3f263MJAHqiQ3c8?g_st=ii" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Google Maps">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/" class="footer-link">Home</a></li>
+                        <li><a href="/menu" class="footer-link">Daily Lineup</a></li>
+                        <li><a href="/#gallery" class="footer-link">Seoulful Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Visit Us</h3>
+                    <a href="https://maps.app.goo.gl/tn3f263MJAHqiQ3c8?g_st=ii" target="_blank" rel="noopener noreferrer" class="footer-info-item address-link">
+                        <span class="footer-info-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </span>
+                        <div class="footer-info-text"><strong>Richmond, BC</strong>125-4940 No. 3 Road, Richmond, BC V6X 3A5</div>
+                    </a>
+                    <div class="footer-info-item">
+                        <span class="footer-info-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                        </span>
+                        <div class="footer-info-text">
+                            <strong>Opening Hours</strong>
+                            Monday – Thursday: 11:00 AM – 9:00 PM<br>
+                            Friday – Sunday: 11:00 AM – 10:00 PM
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 The Seoulful Bakery. All Rights Reserved. Richmond, BC.</p>
+                <p>Warmly baked in Canada with authentic Seoul roots.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====================================================================
+       SCRIPTS
+       ==================================================================== -->
+</body>
+
+</html>
