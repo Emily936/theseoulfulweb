@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/png" href="/breadlogo.PNG">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Seoulful | Warm Seoul-Inspired Korean Bakery</title>
@@ -66,13 +67,14 @@
         /* ─── HERO ───────────────────────────────────────────────────────────── */
         .hero {
             position: relative;
-            min-height: 100vh;
+            height: calc(100vh - 300px);
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
             overflow: hidden;
+            align-items: center;
             padding-top: 62px;
+            padding-left: 62px;
         }
 
         .hero-carousel-container { position: absolute; inset: 0; z-index: 0; }
@@ -226,7 +228,7 @@
             background: var(--cream-mid);
             padding: 0;
             overflow: hidden;
-            height: 300px;
+            height: 300;
             position: relative;
         }
 
@@ -234,7 +236,7 @@
 
         .stills-track {
             display: flex;
-            gap: 6px;
+            gap: 5px;
             height: 100%;
             width: max-content;
             padding-right: 6px;
@@ -678,8 +680,6 @@
         }
 
         .reveal.active, .reveal.visible { opacity: 1; transform: none; }
-
-        
     </style>
 </head>
 
