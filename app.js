@@ -204,98 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
   orderClose.addEventListener('click', closeOrderHub);
   orderBackdrop.addEventListener('click', closeOrderHub);
 
-  /* --------------------------------------------------------------------------
-     6. Instagram Lightbox & Liking Simulator
-     -------------------------------------------------------------------------- */
-  const instaItems = document.querySelectorAll('.insta-item');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxClose = document.getElementById('lightbox-close');
-
-  // Open lightbox
-  instaItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      // If clicking directly on hearts/comments stats, we trigger a like animation
-      if (e.target.classList.contains('likes-count') || e.target.textContent.includes('❤️')) {
-        return; 
-      }
-      
-      const imgSrc = item.getAttribute('data-img') || item.querySelector('img').getAttribute('src');
-      lightboxImg.setAttribute('src', imgSrc);
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  // Close lightbox
-  const closeLightbox = () => {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-  };
-
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-  // Easter Egg: Liking Simulator
-  // Double-clicking an Instagram post gives it an animated heart boost!
-  instaItems.forEach(item => {
-    const likesCountEl = item.querySelector('.likes-count');
-    let liked = false;
-
-    item.addEventListener('dblclick', () => {
-      if (!liked && likesCountEl) {
-        let currentLikes = parseInt(likesCountEl.textContent);
-        likesCountEl.textContent = currentLikes + 1;
-        
-        // Show floating heart effect
-        const heart = document.createElement('span');
-        heart.innerHTML = '❤️';
-        heart.style.position = 'absolute';
-        heart.style.left = '50%';
-        heart.style.top = '50%';
-        heart.style.transform = 'translate(-50%, -50%) scale(0)';
-        heart.style.fontSize = '48px';
-        heart.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-        heart.style.pointerEvents = 'none';
-        heart.style.zIndex = '10';
-        
-        item.appendChild(heart);
-        
-        // Animate heart
-        setTimeout(() => {
-          heart.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        }, 10);
-        
-        setTimeout(() => {
-          heart.style.transform = 'translate(-50%, -50%) scale(0)';
-          heart.style.opacity = '0';
-        }, 600);
-        
-        setTimeout(() => {
-          heart.remove();
-        }, 1200);
-        
-        liked = true;
-      }
-    });
-
-    // Liking on single click of stats too
-    const heartsIcon = item.querySelector('.insta-stat');
-    if (heartsIcon) {
-      heartsIcon.addEventListener('click', (e) => {
-        e.stopPropagation(); // Avoid triggering lightbox
-        if (!liked && likesCountEl) {
-          let currentLikes = parseInt(likesCountEl.textContent);
-          likesCountEl.textContent = currentLikes + 1;
-          liked = true;
-        }
-      });
-    }
-  });
+  // Removed Instagram simulator liking and lightbox handlers as the section has been replaced with social link buttons.
 
   /* --------------------------------------------------------------------------
      7. Active Nav Highlighting on Scroll
@@ -327,5 +236,87 @@ document.addEventListener('DOMContentLoaded', () => {
   // Calculate dynamic header height
   function varHeaderHeight() {
     return header.clientHeight;
+  }
+
+  /* --------------------------------------------------------------------------
+     8. Hero Banner Carousel Interactivity
+     -------------------------------------------------------------------------- */
+  const heroSlides = document.querySelectorAll('.hero-carousel-slide');
+  const heroDots = document.querySelectorAll('.carousel-dot');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  let currentHeroIndex = 0;
+  let heroInterval;
+
+  function showHeroSlide(index) {
+    if (heroSlides.length === 0) return;
+    heroSlides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+      if (heroDots[i]) heroDots[i].classList.toggle('active', i === index);
+    });
+    currentHeroIndex = index;
+  }
+
+  function nextHeroSlide() {
+    let nextIndex = (currentHeroIndex + 1) % heroSlides.length;
+    showHeroSlide(nextIndex);
+  }
+
+  function prevHeroSlide() {
+    let prevIndex = (currentHeroIndex - 1 + heroSlides.length) % heroSlides.length;
+    showHeroSlide(prevIndex);
+  }
+
+  function startHeroTimer() {
+    clearInterval(heroInterval);
+    heroInterval = setInterval(nextHeroSlide, 5000); // 5 seconds
+  }
+
+  if (heroSlides.length > 0) {
+    // Arrow controls
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextHeroSlide();
+        startHeroTimer();
+      });
+    }
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevHeroSlide();
+        startHeroTimer();
+      });
+    }
+
+    // Dot controls
+    heroDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showHeroSlide(index);
+        startHeroTimer();
+      });
+    });
+
+    // Start auto rotate
+    startHeroTimer();
+  }
+
+  /* --------------------------------------------------------------------------
+     9. Baked Stills Background Carousel (No Manual Controls)
+     -------------------------------------------------------------------------- */
+  const stillSlides = document.querySelectorAll('.baked-still-slide');
+  let currentStillIndex = 0;
+
+  function nextStillSlide() {
+    if (stillSlides.length === 0) return;
+    stillSlides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentStillIndex);
+    });
+    currentStillIndex = (currentStillIndex + 1) % stillSlides.length;
+  }
+
+  if (stillSlides.length > 0) {
+    // Initial display
+    nextStillSlide();
+    // Rotate every 4 seconds
+    setInterval(nextStillSlide, 4000);
   }
 });
